@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Online Bozor</title>
+</head>
+<style>
+    /* Mobile responsive dizayn qo'shildi */
+    @media only screen and (max-width: 600px) {
+        header {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .nav {
+            display: none;
+            position: absolute;
+            top: 60px; /* Yoki sizga qanday ma'qul keladi */
+            right: 0;
+            background-color: #333;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .nav ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav li {
+            margin: 10px 0;
+        }
+
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: aqua;
+        }
+
+        .search-bar {
+            margin-top: 10px;
+        }
+
+        .listings {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Qolmish usullar o'zgartirildi */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    header {
+        max-width: 100%;
+        background-color: #333;
+        color: #fff;
+        padding: 15px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+    }
+
+    nav ul li {
+        margin-right: 20px;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .menu-toggle {
+        display: none;
+        padding: 20px;
+    }
+
+    .search-bar {
+        display: flex;
+        align-items: center;
+    }
+
+    .search-bar input {
+        padding: 5px;
+        margin-right: 10px;
+    }
+
+    .search-bar button {
+        padding: 5px 10px;
+        background-color: #fff;
+        color: #333;
+        border: none;
+        cursor: pointer;
+    }
+
+    .listings {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .ad {
+        border: 1px solid #ccc;
+        padding: 15px;
+        text-align: center;
+    }
+</style>
+<script>
+    function toggleMenu() {
+        var nav = document.querySelector('.nav');
+        var menuItems = document.querySelectorAll('.nav li');
+
+        if (nav.style.display === 'block') {
+            nav.style.display = 'none';
+            menuItems.forEach(function (item) {
+                item.style.display = 'none';
+            });
+        } else {
+            nav.style.display = 'block';
+            menuItems.forEach(function (item) {
+                item.style.display = 'block';
+            });
+        }
+    }
+
+    function search() {
+        // Add your search functionality here
+        alert("Search functionality will be implemented here.");
+    }
+</script>
+    <header>
+        <div class="container">
+            <div class="search-bar">
+                <form method="GET" action="{% url 'list' %}" class="form-inline my-2 my-lg-0">
+                    <a href="{% url 'home' %}">🏠</a>
+                    <input class="form-control mr-sm-2" type="text" name="q" id="search" style="border-radius: 12px 0 0 12px;" placeholder="Izlash...">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit" style="border-radius: 0 12px 12px 0;">Qidirish</button>
+                </form>
+            </div>
+        </div>
+    </header>
+    {% block content %}
+{% endblock content %}
+    <footer style="text-align: center;">
+        ©2024.Barcha huquqlar himoyalangan.by Sayfullayev_0204
+    </footer>
+</html>

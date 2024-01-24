@@ -1,0 +1,103 @@
+<!-- article_detail.html -->
+{% extends 'base.html' %}
+{% block content %}
+{% load hitcount_tags %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Existing styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+
+
+
+        .Detail {
+            display: flex;
+            flex-direction: column; /* Change to column for vertical arrangement */
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .Detail img {
+            max-width: 100%; /* Adjust image width to fill the container */
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .price-wrap {
+            text-align: left;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Additional styles */
+        .new-style {
+            color: #007bff;
+            font-size: 16px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: #fff;
+        }
+
+    </style>
+</head>
+<!-- Rest of your content -->
+<div class="Detail">
+    <img src="{{product.rasmi.url}}">
+    <div class="price-wrap mt-2">
+        <p class="title new-style">Turi: {{product.Turi}}</p>
+        <span class="price new-style">E'lon joylovchi: {{product.Ismingiz}}</span><br>
+        <span class="price new-style">Nomi: {{product.nomi}}</span><br>
+        <span class="price new-style">Narxi:{{product.narxi}} so'm</span><br>
+        <span class="price new-style">Ma'lumot: {{product.malumoti}}</span> 
+        <span style="color: #5f5f60;">👁 {{ product.hit_count.hits }}</span><br>
+
+        <button type="button" data-cy="ad-contact-phone" style="border-radius: 20px;">
+            <span >
+                <a href="tel:{{product.ulanish}}" data-testid="contact-phone" style="text-decoration: none; ">📞Telefon</a>
+            </span>
+        </button>
+    </div>        
+</div>
+{% if user.supperuser %}
+<div class="price-wrap mt-2">
+    <a href="{% url 'delete' pk=product.pk %}" class="btn btn-danger new-style">O'chirish</a>
+</div>
+{% endif %}
+<!-- Rest of your content -->
+{% endblock content %}
