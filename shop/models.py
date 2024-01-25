@@ -19,7 +19,7 @@ class Product(models.Model):
     Ismingiz = models.CharField(max_length=100, unique=True)
     nomi=models.CharField(max_length=500, unique=True)
     malumoti = models.TextField(max_length=500, blank=True)
-    narxi = models.IntegerField()
+    narxi = models.CharField(max_length=200)
     rasmi = models.ImageField(upload_to = 'photoes/products')
     ulanish = models.CharField(max_length=100, unique=True)
     def __str__(self) -> str:
